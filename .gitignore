@@ -3,3 +3,12 @@
 
 *.OBJ
 *.obj
+
+*.LST
+*.lst
+
+*.CRF
+*.crf
+
+*.com
+*.COM
