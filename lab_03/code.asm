@@ -1,7 +1,7 @@
 TITLE lab_02
 
          SSTACK     SEGMENT PARA STACK  'STACK'
-                    DB   64 DUP('STACK____')
+                    DB   256 DUP('STACK____')
          SSTACK     ENDS
 
          DSEG          SEGMENT  PARA PUBLIC 'DATA'
@@ -59,7 +59,9 @@ _begin:
 	mov ah,10h
 	int 16h
 
-	int 20h
+	mov ah,4ch
+	mov al,0
+	int 21h
 		
 
 CSEG      ENDS
