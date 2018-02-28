@@ -56,6 +56,29 @@ _begin:
 		add si,2
 		loop diagonal
 
+	mov cx,5
+	mov bx,0
+	mov si,0
+	mov ah,2h
+	print_array:
+		push cx
+		mov cx,4
+		print_raw:
+			push x[bx][si]
+			pop di
+			add di,'0'
+			mov dx,di
+			int 21h
+			add si,2
+			loop print_raw
+		add si,2
+		mov di,0ah
+		mov dx,di
+		int 21h
+		pop cx
+		loop print_array
+			
+
 	mov ah,10h
 	int 16h
 
