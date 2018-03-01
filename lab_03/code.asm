@@ -22,49 +22,39 @@ _begin:
 	mov ax,DSEG
 	mov ds,ax
 	mov cx,NMAX
-	lea bx,x
 	mov si,0
+	mov di,0
 	mov dx,10
 	diagonal:
 		push cx
 		push si
-		push bx
+		push di
 		mov cx,nmax
 		change_array:
 			add si,n
-			push x[bx][si]
-			sub si,n
-			add bx,dx
-			push x[bx][si]
-			sub bx,dx
-			add si,n
-			pop x[bx][si]
-			sub si,n
-			add bx,dx
-			pop x[bx][si]
-			sub bx,dx
-			add n,2
-			add dx,10
+			add di,dx
+			xchg ax,x[si]
+			xchg ax,x[di]
+			xchg ax,x[si]
 			loop change_array
 		dec nmax
 		mov dx,10
 		mov n,2
-		pop bx
+		pop di
 		pop si
 		pop cx
-		add bx,10
-		add si,2
+		add si,12
+		add di,12
 		loop diagonal
 
 	mov cx,5
-	mov bx,0
 	mov si,0
 	mov ah,2h
 	print_array:
 		push cx
 		mov cx,4
 		print_raw:
-			push x[bx][si]
+			push x[si]
 			pop di
 			add di,'0'
 			mov dx,di
