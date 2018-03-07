@@ -24,28 +24,26 @@ _begin:
 	mov cx,NMAX
 	mov si,0
 	mov di,0
-	mov dx,10
+	mov dx,12
 	diagonal:
-		push cx
-		push si
-		push di
+		mov bx,cx
 		mov cx,nmax
 		change_array:
 			add si,n
-			add di,dx
+			add di,10
 			xchg ax,x[si]
 			xchg ax,x[di]
 			xchg ax,x[si]
 			loop change_array
 		dec nmax
-		mov dx,10
 		mov n,2
-		pop di
-		pop si
-		pop cx
-		add si,12
-		add di,12
+		mov cx,bx
+		mov si,dx
+		mov di,dx
+		add dx,12
 		loop diagonal
+
+
 
 	mov cx,5
 	mov si,0
