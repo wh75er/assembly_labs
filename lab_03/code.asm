@@ -11,7 +11,6 @@ TITLE lab_02
 					DW		1,2,3,4,5
 					DW		1,2,3,4,5
 		nmax		DW		4
-		n			DW		2
          DSEG          ENDS
 
  SUBTTL MAIN PROGRAM
@@ -29,14 +28,13 @@ _begin:
 		mov bx,cx
 		mov cx,nmax
 		change_array:
-			add si,n
+			add si,2
 			add di,10
 			xchg ax,x[si]
 			xchg ax,x[di]
 			xchg ax,x[si]
 			loop change_array
 		dec nmax
-		mov n,2
 		mov cx,bx
 		mov si,dx
 		mov di,dx
