@@ -5,7 +5,7 @@ TITLE lab_02
          SSTACK     ENDS
 
          DSEG          SEGMENT  PARA PUBLIC 'DATA'
-        x         	DW      1,2,3,4,5,8,3,9
+        x         	DW      1,4,3,4,5,9,3,8
 		nmax		DW		8
          DSEG          ENDS
 
@@ -23,7 +23,10 @@ _begin:
 		mov di,0
 		mov si,2
 		mov dx,cx
+		mov ax,nmax
+		sub ax,cx
 		mov cx,nmax
+		sub cx,ax
 		InsideLoop:
 			mov ax,[bx][si]
 			cmp [bx][di],ax
