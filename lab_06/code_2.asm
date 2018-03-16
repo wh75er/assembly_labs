@@ -3,7 +3,7 @@ EXTRN X: byte
 
 dseg2	segment AT 0B800h
 	ca label byte
-	org 80 * 3 * 2 + 2 * 2
+	org 322
 	z label byte
 dseg2 ends
 
@@ -16,7 +16,7 @@ Vid proc far
 	mov ds,bx
 	mov ca, al
 	mov ah,31
-	mov z,ah
+	mov z,al
 	ret
 
 Vid endp 
