@@ -1,7 +1,7 @@
 SD1		SEGMENT para common 'DATA'
-		org 2h
-		c1	db	5
-		c2 	db	8
+		c1	label byte	
+		org 1h
+		c2	label byte	
 SD1		ENDS
 
 CSEG SEGMENT para public 'CODE'
@@ -14,12 +14,10 @@ Start:
 	mov ah,2
 
 	mov dl,c1
-	add dl,'0'
 	int 21h
 
 	mov dl,c2
-	add dl,'0'
-	int 21h
+	in 21h
 
 	mov ah,4ch
 	int 21h

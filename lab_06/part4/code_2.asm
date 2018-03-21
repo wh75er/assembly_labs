@@ -12,9 +12,6 @@ Next:
 	mov bx,ds
 	mov ax,DS2
 	mov ds,ax
-	mov ah,2h
-	mov dl,Y
-	int 21h
 
 
 	mov ch,Y
@@ -25,6 +22,9 @@ Next:
 	mov ax,DS2
 	mov ds,ax
 	mov Y,ch
+	mov ah,2h
+	mov dl,Y
+	int 21h
 	
 	mov ah,4ch
 	int 21h

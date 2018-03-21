@@ -3,7 +3,7 @@ EXTRN X: byte
 
 dseg2	segment AT 0B800h
 	ca label byte
-	org 322
+	org 324
 	z label byte
 dseg2 ends
 
