@@ -31,6 +31,7 @@ factorial_1 PROC
 		dec bx
 		push bx
 		call factorial_1
+		add sp,2
 		mov bx, [bp+4]
 		mul bx
 
@@ -42,6 +43,38 @@ factorial_1 PROC
 		ret
 
 factorial_1 ENDP
+
+
+factorial_2 PROC
+
+	push bp
+	mov bp,sp
+	push si
+	push di
+
+	mov bx, [bp+4]
+	mov dx, [bp+6]
+	cmp bx, 1
+	jne con_
+	mov ax, 1
+	jmp ext_
+
+	con_:
+		dec bx
+		push [bp+6]
+		push bx
+		call factorial_2
+		mov bx, [bp+4]
+		mul bx
+
+	ext_:
+		pop di
+		pop si
+		mov sp,bp
+		pop bp
+		ret
+
+factorial_2 ENDP
 
 
 
