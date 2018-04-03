@@ -49,14 +49,14 @@ factorial_2 PROC
 
 	push bp
 	mov bp,sp
-	push si
-	push di
 
 	mov bx, [bp+4]
-	mov dx, [bp+6]
 	cmp bx, 1
 	jne con_
 	mov ax, 1
+	mov si, [bp+6]
+	mov cx, 1
+	mov [si], cx
 	jmp ext_
 
 	con_:
@@ -66,16 +66,14 @@ factorial_2 PROC
 		call factorial_2
 		mov bx, [bp+4]
 		mul bx
-
+		mov si, [bp+6]
+		mov [si], ax
 	ext_:
-		pop di
-		pop si
 		mov sp,bp
 		pop bp
 		ret
 
 factorial_2 ENDP
-
 
 
 
@@ -90,12 +88,12 @@ _begin:
 	add sp,2
 	mov fakt1,ax
 
-	;mov fakt2,1
-	;push fakt2
-	;push M
-	;call factorial_2
-	;add sp,2
-	;pop fakt2
+	push fakt2
+	push M
+	call factorial_2
+	add sp,2
+	mov si,fakt2
+	mov ax,[si]
 
 	mov ax,4ch	
 	int 21h
