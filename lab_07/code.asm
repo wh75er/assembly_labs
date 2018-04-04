@@ -14,14 +14,22 @@
          CSEG      SEGMENT PARA PUBLIC 'CODE'
                  ASSUME CS:CSEG,DS:DSEG,SS:SSTACK
 
-factorial_1 PROC
-
+fact_in_1 PROC
+	
 	push bp
-	mov bp,sp
-	push si
-	push di
+	mov bp, sp
 
 	mov bx, [bp+4]
+	call fact_1 
+
+	mov sp,bp
+	pop bp
+	ret
+
+fact_in_1 ENDP
+
+fact_1 PROC
+
 	cmp bx, 1
 	jne con
 	mov ax, 1
@@ -29,49 +37,31 @@ factorial_1 PROC
 
 	con:
 		dec bx
-		push bx
-		call factorial_1
-		add sp,2
-		mov bx, [bp+4]
+		call fact_1
+		inc bx
 		mul bx
 
 	ext:
-		pop di
-		pop si
-		mov sp,bp
-		pop bp
 		ret
 
-factorial_1 ENDP
+fact_1 ENDP
 
 
 factorial_2 PROC
 
 	push bp
 	mov bp,sp
+	push si
 
 	mov bx, [bp+4]
-	cmp bx, 1
-	jne con_
-	mov ax, 1
 	mov si, [bp+6]
-	mov cx, 1
-	mov [si], cx
-	jmp ext_
+	call fact_1 
+	mov[si], ax
 
-	con_:
-		dec bx
-		push [bp+6]
-		push bx
-		call factorial_2
-		mov bx, [bp+4]
-		mul bx
-		mov si, [bp+6]
-		mov [si], ax
-	ext_:
-		mov sp,bp
-		pop bp
-		ret
+	pop si
+	mov sp,bp
+	pop bp
+	ret
 
 factorial_2 ENDP
 
@@ -82,12 +72,12 @@ _begin:
 	mov ax,DSEG
 	mov ds,ax
 	
-	mov ax,1
 	push M
-	call factorial_1
+	call fact_in_1
 	add sp,2
 	mov fakt1,ax
 
+	mov fakt2,4
 	push fakt2
 	push M
 	call factorial_2
