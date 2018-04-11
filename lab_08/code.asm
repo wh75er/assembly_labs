@@ -4,6 +4,8 @@ EXTRN	binWithoutSign:NEAR
 EXTRN	binWithSign:NEAR
 EXTRN	decWithoutSign:NEAR
 EXTRN	decWithSign:NEAR
+EXTRN	hexWithoutSign:NEAR
+EXTRN	hexWithSign:NEAR
 
 
 
@@ -157,11 +159,46 @@ __decWithSign PROC
 __decWithSign ENDP
 
 __hexWithoutSign PROC
+
+	push bp
+	mov bp,sp
+	push ax
+	push dx
+	push bx
+	
+	call __nl
+	mov ax,[bp+4]
+	call hexWithoutSign
+
+	pop bx
+	pop dx
+	pop ax
+	mov sp,bp
+	pop bp
+
 	ret
+
 __hexWithoutSign ENDP
 
 __hexWithSign PROC
+	push bp
+	mov bp,sp
+	push ax
+	push dx
+	push bx
+	
+	call __nl
+	mov ax,[bp+4]
+	call hexWithSign
+
+	pop bx
+	pop dx
+	pop ax
+	mov sp,bp
+	pop bp
+
 	ret
+
 __hexWithSign ENDP
 
 
