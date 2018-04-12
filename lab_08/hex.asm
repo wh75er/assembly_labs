@@ -16,6 +16,14 @@ CSEG	SEGMENT	PUBLIC
 	ASSUME CS:CSEG, DS:DSEG, SS:sstack
 
 hexWithoutSign	PROC	NEAR
+
+	push bp
+	mov bp,sp
+	push ax
+	push dx
+	push bx
+
+	MOV		AX,[BP+4]
 	MOV		BX,16
 
 
@@ -65,6 +73,11 @@ LO16_Add0:
 		CMP		AX,0
 		JNE		LO16_Div2
 
+	pop bx
+	pop dx
+	pop ax
+	mov sp,bp
+	pop bp
 
 	ret
 
@@ -75,7 +88,9 @@ _begin:
 	mov ds,ax
 	
 	mov ax,10
+	push ax
 	call hexWithoutSign
+	add sp,2
 	
 	mov ah,4ch
 	int 21h

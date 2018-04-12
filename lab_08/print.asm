@@ -23,6 +23,9 @@ CSEG	SEGMENT	PUBLIC
 
 showMenu	PROC	NEAR
 
+	push	ax
+	push	dx
+
 	mov		ah,9
 
 	mov dx,offset l1
@@ -51,6 +54,9 @@ showMenu	PROC	NEAR
 
 	mov dx,offset l9
 	int 21h
+
+	pop		dx
+	pop		ax
 
 	ret
 

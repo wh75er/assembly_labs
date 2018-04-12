@@ -14,6 +14,10 @@ CSEG	SEGMENT	PUBLIC
 
 
 digitEntry	PROC	NEAR
+
+		push	bx
+		push	dx
+
 		MOV		AX,0
 		MOV		BX,0
 
@@ -60,7 +64,10 @@ LII_End:
 
 		POP		AX
 
-		RET
+		pop		dx
+		pop		bx
+
+		ret
 
 digitEntry	ENDP
 

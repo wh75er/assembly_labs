@@ -14,7 +14,7 @@ EXTRN	hexWithSign:NEAR
          SSTACK     ENDS
 
          DSEG          SEGMENT PUBLIC
-			list 	DW	__showMenu, __digitEntry, __binWithoutSign, __binWithSign, __decWithoutSign, __decWithSign, __hexWithoutSign, __hexWithSign
+			list 	DW	showMenu, digitEntry, binWithoutSign, binWithSign, decWithoutSign, decWithSign, hexWithoutSign, hexWithSign
 			k		DW	1
          DSEG          ENDS
 
@@ -40,167 +40,6 @@ __nl	PROC
 	ret
 	
 __nl	ENDP
-
-__showMenu PROC
-
-	push ax
-	push dx
-
-	call showMenu
-
-	pop dx
-	pop ax
-	
-	ret
-	
-__showMenu ENDP
-
-__digitEntry PROC
-	
-	push bx
-	push dx
-	push si
-
-	call digitEntry
-
-	pop si
-	pop dx
-	pop bx
-	
-	ret
-
-__digitEntry ENDP
-
-__binWithoutSign PROC
-
-	push bp
-	mov bp,sp
-	push ax
-	push dx
-	push si
-
-	call __nl
-	mov ax,[bp+4]
-	call binWithoutSign
-
-	pop si
-	pop dx
-	pop ax
-	mov sp, bp
-	pop bp
-
-	ret
-
-__binWithoutSign ENDP
-
-__binWithSign PROC
-
-	push bp
-	mov bp,sp
-	push ax
-	push dx
-	push si
-
-	call __nl
-	mov ax,[bp+4]
-	call binWithSign
-
-	pop si
-	pop dx
-	pop ax
-	mov sp,bp
-	pop bp
-
-	ret
-
-__binWithSign ENDP
-
-__decWithoutSign PROC
-	
-	push bp
-	mov bp,sp
-	push ax
-	push dx
-	push bx
-	
-	call __nl
-	mov ax,[bp+4]
-	call decWithoutSign
-
-	pop bx
-	pop dx
-	pop ax
-	mov sp,bp
-	pop bp
-
-	ret
-
-__decWithoutSign ENDP
-
-__decWithSign PROC
-	push bp
-	mov bp,sp
-	push ax
-	push dx
-	push bx
-
-	call __nl
-	mov ax,[bp+4]
-	call decWithSign
-
-	pop bx
-	pop dx
-	pop ax
-	mov sp,bp
-	pop bp
-
-	ret
-
-__decWithSign ENDP
-
-__hexWithoutSign PROC
-
-	push bp
-	mov bp,sp
-	push ax
-	push dx
-	push bx
-	
-	call __nl
-	mov ax,[bp+4]
-	call hexWithoutSign
-
-	pop bx
-	pop dx
-	pop ax
-	mov sp,bp
-	pop bp
-
-	ret
-
-__hexWithoutSign ENDP
-
-__hexWithSign PROC
-	push bp
-	mov bp,sp
-	push ax
-	push dx
-	push bx
-	
-	call __nl
-	mov ax,[bp+4]
-	call hexWithSign
-
-	pop bx
-	pop dx
-	pop ax
-	mov sp,bp
-	pop bp
-
-	ret
-
-__hexWithSign ENDP
-
 
 
 _begin:
@@ -231,7 +70,8 @@ _begin:
 				
 				add sp,2
 				
-				_calling:	call list[bx]
+				_calling:	call __nl
+							call list[bx]
 
 				cmp bl,2
 				jne _loop
