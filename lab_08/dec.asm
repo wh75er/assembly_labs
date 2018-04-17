@@ -16,13 +16,13 @@ decWithoutSign	PROC	NEAR
 		push bx
 
 		mov		ax,[bp+4]
-		MOV		BX,10
+		mov		bx,10
 
-		PUSH	AX
+		push ax
 
 LO10_Div1:
 		MOV		DX,0
-		DIV		BX	
+		DIV		bx
 		PUSH	AX
 		MOV		AH,2
 		MOV		DL,'a'
@@ -39,7 +39,7 @@ LO10_Div1:
 
 	LO10_Div2:
 		MOV		DX,0
-		DIV		BX
+		DIV		bx
 		PUSH	AX	
 		MOV		AH,2
 		ADD		DL,'0'

@@ -7,5 +7,5 @@ masm.exe /zi dec.asm,;
 masm.exe /zi decs.asm,;
 masm.exe /zi hex.asm,;
 masm.exe /zi hexs.asm,;
-link.exe /co code.obj print.obj enter.obj bin.obj bins.obj dec.obj decs.obj hex.obj hexs.obj,,,;
+link.exe /co code.obj print.obj enter.obj bin.obj bins.obj dec.obj decs.obj hex.obj hexs.obj,;
 pause
